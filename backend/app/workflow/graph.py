@@ -10,11 +10,11 @@ from __future__ import annotations
 import time
 from typing import Any, Callable
 
-from ..agents.base import LLMClient
-from ..agents.roles import (CollectOutput, FinanceOutput, IndustryOutput, PlanOutput, RiskOutput,
+from ..agents.base import AgentResult, LLMClient
+from ..agents.roles import (CollectOutput, FinanceOutput, IndustryOutput, RiskOutput,
                             AuditOutput, audit_policy, collect_policy, finance_policy, industry_policy,
                             plan_policy, risk_policy, COLLECT_PROMPT, FINANCE_PROMPT, INDUSTRY_PROMPT,
-                            PLAN_PROMPT, RISK_PROMPT, AUDIT_PROMPT)
+                            RISK_PROMPT, AUDIT_PROMPT)
 from ..domain.fields import CORE_FIELDS
 from ..services.analysis import (build_graph, compute_finance, industry_view)
 from ..services.report import (ReportContext, build_claims, build_context, publish_version,
@@ -44,13 +44,12 @@ def build(emit: Emit) -> CompiledGraph:
         facts = [{"year": y, "field_code": code, "document_id": doc}
                  for (y, code), doc in sorted(by_key.items())]
         docs = [d for d in _repo.documents_visible(as_of) if d["issuer"] == subject["entity_id"]]
-        res = state["llm"].generate_json(
-            role="plan", schema=PlanOutput,
-            context={"entity_id": subject["entity_id"], "years": years, "facts": facts},
-            instructions=PLAN_PROMPT, fallback=plan_policy,
-            cache_key=f"plan:{subject['entity_id']}:{years}:{as_of}",
-        )
-        out: PlanOutput = res.output  # type: ignore[assignment]
+        # 覆盖矩阵是纯字段字典扫描，确定性结果比模型更准也更快；
+        # 这里不调用模型，保留为「确定性计划 Agent」，其余角色再走 live。
+        out = plan_policy({"entity_id": subject["entity_id"], "years": years,
+                           "facts": facts, "missing": []})
+        res = AgentResult(role="plan", output=out, mode="policy",
+                          notes=["覆盖矩阵由字段字典确定性扫描"])
         return {
             "coverage": [c.model_dump() for c in out.coverage],
             "plan_note": out.note,
