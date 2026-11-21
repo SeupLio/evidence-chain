@@ -1,0 +1,91 @@
+id: beer
+name: 啤酒产业链
+core: brew
+# 说明：core 节点会在建图时展开为该行业的 3 家样本公司。
+# role 只使用 upstream / packaging / core / downstream / demand 五层，保证前端分层稳定。
+# basis 标注关系依据：行业公开资料、公司年报披露、统计口径，避免把推断写成披露。
+nodes:
+  # ---------------- 上游原料 ----------------
+  - { id: barley,    name: 原粮大麦,   role: upstream, note: 进口大麦占比高，粮价与汇率共同影响采购成本 }
+  - { id: malt,      name: 麦芽,       role: upstream, note: 大麦经制麦环节形成麦芽，是酿造主原料 }
+  - { id: hop,       name: 啤酒花,     role: upstream, note: 新疆、甘肃等产区；成本占比低但影响风味与高端化 }
+  - { id: yeast,     name: 酵母/菌种,  role: upstream, note: 龙头企业以自培菌种为主，外购比例较低 }
+  - { id: water,     name: 酿造用水,   role: upstream, note: 水质与水源地影响产品一致性与区域布局 }
+  - { id: rice,      name: 大米/辅料,  role: upstream, note: 部分产品以大米、玉米淀粉等替代部分麦芽 }
+  - { id: equipment, name: 酿造设备,   role: upstream, note: 糖化、发酵、灌装设备；技改影响产能与能耗 }
+  - { id: co2,       name: 二氧化碳,   role: upstream, note: 发酵副产物回收；供应紧张时影响灌装节奏 }
+
+  # ---------------- 包材与辅材 ----------------
+  - { id: glass,     name: 玻璃瓶,     role: packaging, note: 回瓶率与轻量化直接影响包材成本 }
+  - { id: can,       name: 铝罐,       role: packaging, note: 铝价向成本传导通常滞后一个季度 }
+  - { id: carton,    name: 纸箱/标签,  role: packaging, note: 瓦楞纸与标签纸价格随纸价波动 }
+  - { id: crown,     name: 瓶盖,       role: packaging, note: 金属盖与拉环盖，配套玻璃瓶与铝罐 }
+  - { id: pallet,    name: 托盘/耗材,  role: packaging, note: 仓储与运输环节的周转耗材 }
+
+  # ---------------- 中游制造（展开为样本公司） ----------------
+  - { id: brew,      name: 啤酒酿造,   role: core, note: 糖化、发酵、过滤、灌装与质量管理 }
+
+  # ---------------- 渠道与服务 ----------------
+  - { id: dist,      name: 经销商,     role: downstream, note: 深度分销为主，龙头企业渠道下沉到县级市场 }
+  - { id: wholesaler, name: 批发商,    role: downstream, note: 区域批发与二批商，承担仓储与小额配送 }
+  - { id: ka,        name: 商超/便利店, role: downstream, note: 直供 KA 与区域连锁，账期与陈列资源影响回款 }
+  - { id: cater,     name: 餐饮/夜场,  role: downstream, note: 现饮场景，吨价通常高于非现饮 }
+  - { id: ecom,      name: 电商/即时零售, role: downstream, note: 平台直营与到家业务，履约成本与价格体系需平衡 }
+  - { id: community, name: 社区团购,   role: downstream, note: 以团长与自提点为核心，价格敏感度高 }
+  - { id: export,    name: 出口,       role: downstream, note: 东南亚与海外华人市场，受运费与关税影响 }
+  - { id: dutyfree,  name: 免税/特通,  role: downstream, note: 机场、口岸与特通渠道，受客流与政策影响 }
+  - { id: logistics, name: 冷链/仓储,  role: downstream, note: 啤酒运输半径与仓储周转决定区域供给效率 }
+
+  # ---------------- 终端需求 ----------------
+  - { id: consumer,  name: 终端消费者, role: demand, note: 家庭消费与即饮消费共同构成终端需求 }
+  - { id: sports,    name: 赛事/音乐节, role: demand, note: 体育赛事与音乐节带来阶段性即饮需求 }
+  - { id: gift,      name: 礼赠/团购,  role: demand, note: 节庆礼赠与单位团购，季节性明显 }
+  - { id: young,     name: 年轻消费群, role: demand, note: 精酿、低度与果味产品的主要增量人群 }
+
+edges:
+  # 上游 → 中游
+  - { from: barley,    to: brew, relation: 原料供应, basis: 行业公开资料 }
+  - { from: malt,      to: brew, relation: 原料供应, basis: 行业公开资料 }
+  - { from: hop,       to: brew, relation: 原料供应, basis: 行业公开资料 }
+  - { from: yeast,     to: brew, relation: 辅料供应, basis: 行业公开资料 }
+  - { from: water,     to: brew, relation: 公用工程, basis: 行业公开资料 }
+  - { from: rice,      to: brew, relation: 辅料供应, basis: 行业公开资料 }
+  - { from: equipment, to: brew, relation: 设备供应, basis: 行业公开资料 }
+  - { from: co2,       to: brew, relation: 辅料供应, basis: 行业公开资料 }
+
+  # 包材 → 中游
+  - { from: glass,     to: brew, relation: 包材供应, basis: 行业公开资料 }
+  - { from: can,       to: brew, relation: 包材供应, basis: 行业公开资料 }
+  - { from: carton,    to: brew, relation: 包材供应, basis: 行业公开资料 }
+  - { from: crown,     to: brew, relation: 包材供应, basis: 行业公开资料 }
+  - { from: pallet,    to: brew, relation: 包材供应, basis: 行业公开资料 }
+
+  # 中游 → 渠道
+  - { from: brew,      to: dist,      relation: 经销,       basis: 行业公开资料 }
+  - { from: brew,      to: wholesaler, relation: 批发,      basis: 行业公开资料 }
+  - { from: brew,      to: ka,        relation: 直供 KA,    basis: 行业公开资料 }
+  - { from: brew,      to: cater,     relation: 直供餐饮,   basis: 行业公开资料 }
+  - { from: brew,      to: ecom,      relation: 线上直营,   basis: 行业公开资料 }
+  - { from: brew,      to: community, relation: 社区团购,   basis: 行业公开资料 }
+  - { from: brew,      to: export,    relation: 外销,       basis: 行业公开资料 }
+  - { from: brew,      to: dutyfree,  relation: 特通渠道,   basis: 行业公开资料 }
+  - { from: brew,      to: logistics, relation: 物流服务,   basis: 行业公开资料 }
+
+  # 上游内部的加工关系
+  - { from: barley,    to: malt,      relation: 制麦加工,   basis: 行业公开资料 }
+
+  # 渠道 → 终端
+  - { from: dist,      to: cater,     relation: 分销,       basis: 行业公开资料 }
+  - { from: dist,      to: ka,        relation: 分销,       basis: 行业公开资料 }
+  - { from: dist,      to: community, relation: 分销,       basis: 行业公开资料 }
+  - { from: wholesaler, to: ka,       relation: 批发供货,   basis: 行业公开资料 }
+  - { from: ka,        to: consumer,  relation: 零售,       basis: 行业公开资料 }
+  - { from: cater,     to: consumer,  relation: 现饮消费,   basis: 行业公开资料 }
+  - { from: ecom,      to: consumer,  relation: 到家,       basis: 行业公开资料 }
+  - { from: community, to: consumer,  relation: 自提,       basis: 行业公开资料 }
+  - { from: dutyfree,  to: consumer,  relation: 免税零售,   basis: 行业公开资料 }
+  - { from: export,    to: consumer,  relation: 海外消费,   basis: 行业公开资料 }
+  - { from: sports,    to: consumer,  relation: 场景消费,   basis: 行业公开资料 }
+  - { from: gift,      to: consumer,  relation: 礼赠消费,   basis: 行业公开资料 }
+  - { from: young,     to: consumer,  relation: 人群结构,   basis: 行业公开资料 }
+  - { from: logistics, to: dist,      relation: 仓配支撑,   basis: 行业公开资料 }

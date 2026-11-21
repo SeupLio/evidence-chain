@@ -1,0 +1,40 @@
+id: auto
+name: 汽车整车产业链
+core: oem
+nodes:
+  - { id: battery,  name: 动力电池,   role: upstream,  note: 占新能源整车成本约三到四成, listed: [300750] }
+  - { id: chip,     name: 车规芯片,   role: upstream,  note: 智能座舱与智驾依赖高算力芯片 }
+  - { id: metal,    name: 钢/铝型材,  role: upstream }
+  - { id: parts,    name: 零部件 Tier1, role: upstream, note: 一体化压铸降低零件数量 }
+  - { id: thermal,  name: 热管理,    role: upstream,  note: 电池热管理与空调系统共用部分供应链 }
+  - { id: software, name: 智驾/座舱软件, role: upstream, note: 软件定义汽车，迭代节奏影响车型竞争力 }
+  - { id: oem,      name: 整车制造,   role: core }
+  - { id: dealer,   name: 经销商 4S,  role: downstream, note: 库存系数是价格战的先行指标 }
+  - { id: direct,   name: 直营/线上下单, role: downstream }
+  - { id: charge,   name: 充换电服务, role: downstream }
+  - { id: fleet,    name: 出行/租赁,  role: downstream }
+  - { id: usedcar,  name: 二手车,     role: downstream, note: 保值率影响品牌与租赁车队残值 }
+  - { id: overseas, name: 海外市场,   role: downstream, note: 出口与本地化建厂并行 }
+  - { id: user,     name: 购车用户,   role: demand }
+  - { id: commercial, name: 商用/网约, role: demand,    note: 网约车与物流车队偏重全生命周期成本 }
+  - { id: family,   name: 家庭增换购, role: demand,     note: 增换购与家庭结构变化影响车型选择 }
+edges:
+  - { from: battery, to: oem, relation: 核心部件, basis: 行业公开资料 }
+  - { from: chip,    to: oem, relation: 核心部件, basis: 行业公开资料 }
+  - { from: metal,   to: oem, relation: 原材料,   basis: 行业公开资料 }
+  - { from: parts,   to: oem, relation: 零部件,   basis: 行业公开资料 }
+  - { from: thermal, to: oem, relation: 核心部件, basis: 行业公开资料 }
+  - { from: software, to: oem, relation: 软件供应, basis: 行业公开资料 }
+  - { from: oem, to: dealer,   relation: 批售,   basis: 行业公开资料 }
+  - { from: oem, to: direct,   relation: 直销,   basis: 行业公开资料 }
+  - { from: oem, to: charge,   relation: 生态服务, basis: 行业公开资料 }
+  - { from: oem, to: fleet,    relation: 大客户, basis: 行业公开资料 }
+  - { from: oem, to: usedcar,  relation: 置换,   basis: 行业公开资料 }
+  - { from: oem, to: overseas, relation: 出口,   basis: 行业公开资料 }
+  - { from: dealer, to: user, relation: 零售,    basis: 行业公开资料 }
+  - { from: direct, to: user, relation: 交付,    basis: 行业公开资料 }
+  - { from: charge, to: user, relation: 补能,    basis: 行业公开资料 }
+  - { from: fleet,  to: user, relation: 用车服务, basis: 行业公开资料 }
+  - { from: usedcar, to: user, relation: 二手车交易, basis: 行业公开资料 }
+  - { from: commercial, to: fleet, relation: 车队采购, basis: 行业公开资料 }
+  - { from: family, to: user, relation: 家庭购车, basis: 行业公开资料 }

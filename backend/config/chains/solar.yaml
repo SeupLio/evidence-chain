@@ -1,0 +1,38 @@
+id: solar
+name: 光伏产业链
+core: maker
+nodes:
+  - { id: silicon,  name: 多晶硅料,   role: upstream,  note: 周期品，价格弹性最大, listed: [600438] }
+  - { id: wafer,    name: 硅片,       role: upstream,  note: 切片良率与薄片化决定成本, listed: [601012] }
+  - { id: cell,     name: 电池片,     role: upstream,  note: TOPCon/HJT 技术路线切换期 }
+  - { id: glass,    name: 光伏玻璃,   role: packaging, note: 双玻组件渗透率提升带动需求, listed: [601865] }
+  - { id: film,     name: 胶膜/背板,  role: packaging, listed: [603806] }
+  - { id: frame,    name: 边框/支架,  role: packaging }
+  - { id: junction, name: 接线盒/连接器, role: packaging, note: 小部件但直接影响组件可靠性 }
+  - { id: maker,    name: 组件与系统, role: core }
+  - { id: inverter, name: 逆变器/储能, role: downstream, note: 与组件配套出货，毛利率高于制造环节, listed: [300274] }
+  - { id: tracker,  name: 跟踪支架,   role: downstream, note: 提升发电增益，地面电站渗透率上升 }
+  - { id: epc,      name: 电站 EPC,   role: downstream }
+  - { id: operator, name: 电站运营,   role: downstream, note: 现金流稳定，受电价与利用小时影响 }
+  - { id: oandm,    name: 运维服务,   role: downstream, note: 存量电站规模扩大带来运维需求 }
+  - { id: grid,     name: 电网/消纳,  role: demand,     note: 消纳能力决定装机天花板 }
+  - { id: overseas, name: 海外市场,   role: downstream, note: 贸易壁垒与本地化产能 }
+  - { id: green,    name: 绿电/绿证,  role: demand,     note: 绿电交易与碳约束影响项目收益 }
+edges:
+  - { from: silicon, to: wafer, relation: 原料,     basis: 行业公开资料 }
+  - { from: wafer,   to: cell,  relation: 原料,     basis: 行业公开资料 }
+  - { from: cell,    to: maker, relation: 电池片,   basis: 行业公开资料 }
+  - { from: glass,   to: maker, relation: 辅材,     basis: 行业公开资料 }
+  - { from: film,    to: maker, relation: 辅材,     basis: 行业公开资料 }
+  - { from: frame,   to: maker, relation: 辅材,     basis: 行业公开资料 }
+  - { from: junction, to: maker, relation: 辅材,    basis: 行业公开资料 }
+  - { from: maker,   to: inverter, relation: 配套出货, basis: 行业公开资料 }
+  - { from: maker,   to: tracker, relation: 配套出货, basis: 行业公开资料 }
+  - { from: maker,   to: epc,    relation: 供货,   basis: 行业公开资料 }
+  - { from: maker,   to: overseas, relation: 出口, basis: 行业公开资料 }
+  - { from: inverter, to: epc,   relation: 配套,   basis: 行业公开资料 }
+  - { from: tracker, to: epc,    relation: 配套,   basis: 行业公开资料 }
+  - { from: epc,     to: operator, relation: 交付, basis: 行业公开资料 }
+  - { from: operator, to: oandm, relation: 运维,   basis: 行业公开资料 }
+  - { from: operator, to: grid,  relation: 并网,   basis: 行业公开资料 }
+  - { from: operator, to: green, relation: 绿电交易, basis: 行业公开资料 }

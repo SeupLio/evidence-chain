@@ -1,0 +1,162 @@
+{
+ "pack": "beer-demo",
+ "version": "1.0.0",
+ "documents": [
+  {
+   "file": "600600_2023_annual_report.pdf",
+   "entity_id": "SH:600600",
+   "issuer": "SH:600600",
+   "doc_type": "annual_report",
+   "fiscal_year": 2023,
+   "published_on": "2024-03-28",
+   "title": "青岛啤酒股份有限公司 2023 年年度报告",
+   "tier": "primary",
+   "demo_role": "",
+   "expected_parser": "pdfplumber"
+  },
+  {
+   "file": "600600_2024_annual_report.pdf",
+   "entity_id": "SH:600600",
+   "issuer": "SH:600600",
+   "doc_type": "annual_report",
+   "fiscal_year": 2024,
+   "published_on": "2025-03-28",
+   "title": "青岛啤酒股份有限公司 2024 年年度报告",
+   "tier": "primary",
+   "demo_role": "",
+   "expected_parser": "pdfplumber"
+  },
+  {
+   "file": "600600_2025_annual_report.pdf",
+   "entity_id": "SH:600600",
+   "issuer": "SH:600600",
+   "doc_type": "annual_report",
+   "fiscal_year": 2025,
+   "published_on": "2026-03-28",
+   "title": "青岛啤酒股份有限公司 2025 年年度报告",
+   "tier": "primary",
+   "demo_role": "",
+   "expected_parser": "pdfplumber"
+  },
+  {
+   "file": "600132_2023_annual_report.pdf",
+   "entity_id": "SH:600132",
+   "issuer": "SH:600132",
+   "doc_type": "annual_report",
+   "fiscal_year": 2023,
+   "published_on": "2024-03-28",
+   "title": "重庆啤酒股份有限公司 2023 年年度报告",
+   "tier": "primary",
+   "demo_role": "",
+   "expected_parser": "pdfplumber"
+  },
+  {
+   "file": "600132_2024_annual_report.pdf",
+   "entity_id": "SH:600132",
+   "issuer": "SH:600132",
+   "doc_type": "annual_report",
+   "fiscal_year": 2024,
+   "published_on": "2025-03-28",
+   "title": "重庆啤酒股份有限公司 2024 年年度报告",
+   "tier": "primary",
+   "demo_role": "",
+   "expected_parser": "pdfplumber"
+  },
+  {
+   "file": "600132_2025_annual_report.pdf",
+   "entity_id": "SH:600132",
+   "issuer": "SH:600132",
+   "doc_type": "annual_report",
+   "fiscal_year": 2025,
+   "published_on": "2026-03-28",
+   "title": "重庆啤酒股份有限公司 2025 年年度报告",
+   "tier": "primary",
+   "demo_role": "",
+   "expected_parser": "pdfplumber"
+  },
+  {
+   "file": "002461_2023_annual_report.pdf",
+   "entity_id": "SZ:002461",
+   "issuer": "SZ:002461",
+   "doc_type": "annual_report",
+   "fiscal_year": 2023,
+   "published_on": "2024-03-28",
+   "title": "广州珠江啤酒股份有限公司 2023 年年度报告",
+   "tier": "primary",
+   "demo_role": "",
+   "expected_parser": "pdfplumber"
+  },
+  {
+   "file": "002461_2024_annual_report.pdf",
+   "entity_id": "SZ:002461",
+   "issuer": "SZ:002461",
+   "doc_type": "annual_report",
+   "fiscal_year": 2024,
+   "published_on": "2025-03-28",
+   "title": "广州珠江啤酒股份有限公司 2024 年年度报告",
+   "tier": "primary",
+   "demo_role": "",
+   "expected_parser": "pdfplumber"
+  },
+  {
+   "file": "002461_2025_annual_report.pdf",
+   "entity_id": "SZ:002461",
+   "issuer": "SZ:002461",
+   "doc_type": "annual_report",
+   "fiscal_year": 2025,
+   "published_on": "2026-03-28",
+   "title": "广州珠江啤酒股份有限公司 2025 年年度报告",
+   "tier": "primary",
+   "demo_role": "",
+   "expected_parser": "pdfplumber"
+  },
+  {
+   "file": "600600_2025_correction.pdf",
+   "entity_id": "SH:600600",
+   "issuer": "SH:600600",
+   "doc_type": "correction",
+   "fiscal_year": 2025,
+   "published_on": "2026-06-15",
+   "title": "关于2025年年度报告营业成本的更正公告",
+   "tier": "primary",
+   "demo_role": "",
+   "expected_parser": "pdfplumber"
+  },
+  {
+   "file": "industry_beer_2025.pdf",
+   "entity_id": null,
+   "issuer": "国家统计局",
+   "doc_type": "industry_stats",
+   "fiscal_year": null,
+   "published_on": "2026-01-20",
+   "title": "2025年啤酒行业运行情况",
+   "tier": "primary",
+   "demo_role": "",
+   "expected_parser": "pdfplumber"
+  },
+  {
+   "file": "policy_catalog_2024.pdf",
+   "entity_id": null,
+   "issuer": "国家发展和改革委员会",
+   "doc_type": "policy",
+   "fiscal_year": null,
+   "published_on": "2024-02-01",
+   "title": "产业结构调整指导目录（2024年本）摘录",
+   "tier": "primary",
+   "demo_role": "",
+   "expected_parser": "pdfplumber"
+  },
+  {
+   "file": "market_note_beer_2025.pdf",
+   "entity_id": null,
+   "issuer": "公开市场观察（二级来源）",
+   "doc_type": "market_note",
+   "fiscal_year": null,
+   "published_on": "2026-05-10",
+   "title": "啤酒行业高端化趋势观察（二级来源）",
+   "tier": "secondary",
+   "demo_role": "",
+   "expected_parser": "pdfplumber"
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+id: baijiu
+name: 白酒产业链
+core: distillery
+nodes:
+  - { id: sorghum,  name: 高粱,        role: upstream,  note: 红缨子糯高粱为核心产区品种 }
+  - { id: wheat,    name: 小麦/制曲,   role: upstream,  note: 制曲用粮，决定酒体风格 }
+  - { id: rice,     name: 大米/糯米,   role: upstream }
+  - { id: water,    name: 酿造用水,    role: upstream,  note: 产区水质与窖池微生物环境共同影响品质 }
+  - { id: qu,       name: 酒曲,        role: upstream,  note: 大曲、小曲等不同曲种决定香型与出酒率 }
+  - { id: cellar,   name: 基酒储能,    role: upstream,  note: 优质基酒需 3-5 年储存，是产能瓶颈 }
+  - { id: glass,    name: 玻瓶/瓶盖,   role: packaging, note: 高端产品包材成本占比高于中低端 }
+  - { id: ceramic,  name: 陶瓷瓶,      role: packaging, note: 高端与礼盒产品常用陶瓷瓶，单价高 }
+  - { id: carton,   name: 包装印刷,    role: packaging, note: 礼盒化推高包装成本 }
+  - { id: distillery, name: 白酒酿造,  role: core }
+  - { id: dealer,   name: 经销商,      role: downstream, note: 先款后货，预收款（合同负债）是景气先行指标 }
+  - { id: specialty, name: 专卖店/团购, role: downstream }
+  - { id: wholesale, name: 批发市场,   role: downstream, note: 流通批发与二批商，价格透明度高 }
+  - { id: ecom,     name: 电商/直播,   role: downstream, note: 低价引流对价格体系有冲击 }
+  - { id: restaurant, name: 餐饮/宴席, role: downstream, note: 宴席场景与开瓶率直接影响动销 }
+  - { id: dutyfree, name: 免税/特通,   role: downstream }
+  - { id: banquet,  name: 宴席/礼赠,   role: demand,     note: 需求刚性强，受经济周期影响小于商务消费 }
+  - { id: business, name: 商务宴请,    role: demand,     note: 商务消费与宏观经济、投资活动相关 }
+  - { id: collect,  name: 收藏/投资,   role: demand,     note: 老酒金融属性放大价格波动 }
+  - { id: young,    name: 年轻/低度,   role: demand,     note: 低度酒、果酒与年轻化产品是新增量 }
+edges:
+  - { from: sorghum, to: distillery, relation: 原料供应, basis: 行业公开资料 }
+  - { from: wheat,   to: distillery, relation: 制曲原料, basis: 行业公开资料 }
+  - { from: rice,    to: distillery, relation: 原料供应, basis: 行业公开资料 }
+  - { from: water,   to: distillery, relation: 公用工程, basis: 行业公开资料 }
+  - { from: qu,      to: distillery, relation: 制曲供应, basis: 行业公开资料 }
+  - { from: cellar,  to: distillery, relation: 基酒约束, basis: 行业公开资料 }
+  - { from: glass,   to: distillery, relation: 包材供应, basis: 行业公开资料 }
+  - { from: ceramic, to: distillery, relation: 包材供应, basis: 行业公开资料 }
+  - { from: carton,  to: distillery, relation: 包材供应, basis: 行业公开资料 }
+  - { from: distillery, to: dealer, relation: 经销,   basis: 行业公开资料 }
+  - { from: distillery, to: specialty, relation: 直营, basis: 行业公开资料 }
+  - { from: distillery, to: wholesale, relation: 批发, basis: 行业公开资料 }
+  - { from: distillery, to: ecom, relation: 线上,     basis: 行业公开资料 }
+  - { from: distillery, to: restaurant, relation: 直供餐饮, basis: 行业公开资料 }
+  - { from: distillery, to: dutyfree, relation: 特通渠道, basis: 行业公开资料 }
+  - { from: dealer,  to: banquet, relation: 分销,     basis: 行业公开资料 }
+  - { from: dealer,  to: collect, relation: 囤货,     basis: 行业公开资料 }
+  - { from: dealer,  to: restaurant, relation: 分销,  basis: 行业公开资料 }
+  - { from: specialty, to: banquet, relation: 团购,   basis: 行业公开资料 }
+  - { from: wholesale, to: restaurant, relation: 批发供货, basis: 行业公开资料 }
+  - { from: ecom,    to: collect, relation: 二级流通, basis: 行业公开资料 }
+  - { from: restaurant, to: business, relation: 商务消费, basis: 行业公开资料 }
+  - { from: banquet, to: young, relation: 场景延伸,   basis: 行业公开资料 }

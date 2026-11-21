@@ -1,0 +1,11 @@
+id: beer_cn_a_v1
+currency: CNY
+period_kind: FY
+consolidation: consolidated
+fiscal_years: [2023, 2024, 2025]
+entity_id: SH:600600
+peer_ids: [SH:600132, SZ:002461]
+min_comparable_peers: 2
+rule_pack: operating_watch_v1
+annual_report_required: true
+industry_id: beer_cn_a

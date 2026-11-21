@@ -1,0 +1,48 @@
+id: dairy
+name: 乳制品产业链
+core: processing
+nodes:
+  - { id: pasture,   name: 牧场/原奶,    role: upstream,  note: 原奶价格周期性波动，直接决定毛利率弹性 }
+  - { id: forage,    name: 苜蓿/饲料,    role: upstream,  note: 进口苜蓿占饲料成本约三成 }
+  - { id: additive,  name: 菌种/添加剂,  role: upstream }
+  - { id: sugar,     name: 糖/果料,      role: upstream,  note: 风味乳与酸奶的辅料，影响配方成本 }
+  - { id: equipment, name: 乳品设备,     role: upstream,  note: 均质、杀菌与灌装设备决定产能与保质期 }
+  - { id: packaging, name: 无菌包装,     role: packaging, note: 无菌纸基包装集中度高，议价能力强 }
+  - { id: bottle,    name: PET 瓶/盖,    role: packaging, note: 低温与即饮产品使用 PET 瓶，受油价影响 }
+  - { id: carton,    name: 纸箱/标签,    role: packaging }
+  - { id: processing, name: 乳品加工,    role: core }
+  - { id: coldchain, name: 冷链物流,     role: downstream, note: 低温奶半径受冷链约束，区域属性强 }
+  - { id: dealer,    name: 经销商,       role: downstream }
+  - { id: ka,        name: 商超/便利店,  role: downstream }
+  - { id: ecom,      name: 电商/即时零售, role: downstream }
+  - { id: community, name: 社区团购,     role: downstream }
+  - { id: b2b,       name: 茶饮/烘焙 B 端, role: downstream, note: 新茶饮带动奶油、芝士等 B 端需求 }
+  - { id: infant,    name: 母婴渠道,     role: downstream, note: 婴配粉依赖母婴店与专业渠道 }
+  - { id: consumer,  name: 家庭消费,     role: demand,     note: 人口结构与出生率影响基础白奶需求 }
+  - { id: young,     name: 年轻/即饮,    role: demand,     note: 即饮咖啡、奶茶与功能性乳品带来增量 }
+  - { id: elderly,   name: 银发/健康,    role: demand,     note: 高钙、低脂与功能化产品需求上升 }
+edges:
+  - { from: pasture,   to: processing, relation: 原奶供应, basis: 行业公开资料 }
+  - { from: forage,    to: pasture,    relation: 饲料,     basis: 行业公开资料 }
+  - { from: additive,  to: processing, relation: 辅料供应, basis: 行业公开资料 }
+  - { from: sugar,     to: processing, relation: 辅料供应, basis: 行业公开资料 }
+  - { from: equipment, to: processing, relation: 设备供应, basis: 行业公开资料 }
+  - { from: packaging, to: processing, relation: 包材供应, basis: 行业公开资料 }
+  - { from: bottle,    to: processing, relation: 包材供应, basis: 行业公开资料 }
+  - { from: carton,    to: processing, relation: 包材供应, basis: 行业公开资料 }
+  - { from: processing, to: coldchain, relation: 冷链配送, basis: 行业公开资料 }
+  - { from: processing, to: dealer,    relation: 经销,     basis: 行业公开资料 }
+  - { from: processing, to: ka,        relation: 直供 KA,  basis: 行业公开资料 }
+  - { from: processing, to: ecom,      relation: 线上,     basis: 行业公开资料 }
+  - { from: processing, to: community, relation: 社区团购, basis: 行业公开资料 }
+  - { from: processing, to: b2b,       relation: 大客户,   basis: 行业公开资料 }
+  - { from: processing, to: infant,    relation: 母婴渠道, basis: 行业公开资料 }
+  - { from: coldchain, to: ka,         relation: 配送,     basis: 行业公开资料 }
+  - { from: coldchain, to: dealer,     relation: 配送,     basis: 行业公开资料 }
+  - { from: dealer,    to: consumer,   relation: 零售,     basis: 行业公开资料 }
+  - { from: ka,        to: consumer,   relation: 零售,     basis: 行业公开资料 }
+  - { from: ecom,      to: consumer,   relation: 到家,     basis: 行业公开资料 }
+  - { from: community, to: consumer,   relation: 自提,     basis: 行业公开资料 }
+  - { from: infant,    to: consumer,   relation: 母婴消费, basis: 行业公开资料 }
+  - { from: b2b,       to: young,      relation: 现制饮品, basis: 行业公开资料 }
+  - { from: consumer,  to: elderly,    relation: 人群结构, basis: 行业公开资料 }

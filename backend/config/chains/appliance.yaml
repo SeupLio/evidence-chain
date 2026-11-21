@@ -1,0 +1,39 @@
+id: appliance
+name: 家用电器产业链
+core: oem
+nodes:
+  - { id: steel,      name: 钢材,        role: upstream,  note: 大宗价格波动直接影响钣金件成本 }
+  - { id: copper,     name: 铜/铝,       role: upstream,  note: 铜价是空调成本的最大单一变量 }
+  - { id: compressor, name: 压缩机,      role: upstream,  note: 自供与外购并存，垂直一体化是毛利差异主因, listed: [600619, 601956] }
+  - { id: chip,       name: 芯片/MCU,    role: upstream,  note: 变频与智能模组依赖进口芯片 }
+  - { id: panel,      name: 显示面板,    role: upstream }
+  - { id: plastic,    name: 塑料/注塑件, role: upstream,  note: 树脂价格与模具摊销影响结构件成本 }
+  - { id: motor,      name: 电机,        role: upstream,  note: 变频电机与风机自供比例影响成本与能效 }
+  - { id: oem,        name: 整机制造,    role: core }
+  - { id: ka,         name: 连锁/电商渠道, role: downstream, note: 线上占比提升压低加价率 }
+  - { id: estate,     name: 地产精装/工程, role: downstream, note: 与竣工面积高度相关 }
+  - { id: export,     name: 出口/ODM,    role: downstream, note: 汇率与海运费影响交付成本 }
+  - { id: service,    name: 安装与售后,  role: downstream }
+  - { id: tradein,    name: 以旧换新,    role: downstream, note: 政策补贴与回收体系影响换新节奏 }
+  - { id: consumer,   name: 家庭用户,    role: demand }
+  - { id: rental,     name: 租房/公寓,   role: demand,     note: 租房与长租公寓偏好高性价比与易安装产品 }
+  - { id: replacement, name: 更新需求,   role: demand,     note: 大家电更新周期与地产竣工共同决定需求 }
+edges:
+  - { from: steel,      to: oem, relation: 原材料,   basis: 行业公开资料 }
+  - { from: copper,     to: oem, relation: 原材料,   basis: 行业公开资料 }
+  - { from: compressor, to: oem, relation: 核心部件, basis: 行业公开资料 }
+  - { from: chip,       to: oem, relation: 核心部件, basis: 行业公开资料 }
+  - { from: panel,      to: oem, relation: 部件供应, basis: 行业公开资料 }
+  - { from: plastic,    to: oem, relation: 原材料,   basis: 行业公开资料 }
+  - { from: motor,      to: oem, relation: 核心部件, basis: 行业公开资料 }
+  - { from: oem, to: ka,     relation: 零售分销, basis: 行业公开资料 }
+  - { from: oem, to: estate, relation: 工程渠道, basis: 行业公开资料 }
+  - { from: oem, to: export, relation: 出口,     basis: 行业公开资料 }
+  - { from: oem, to: service, relation: 售后,    basis: 行业公开资料 }
+  - { from: oem, to: tradein, relation: 以旧换新, basis: 行业公开资料 }
+  - { from: ka,  to: consumer, relation: 零售,   basis: 行业公开资料 }
+  - { from: estate, to: consumer, relation: 精装交付, basis: 行业公开资料 }
+  - { from: service, to: consumer, relation: 服务, basis: 行业公开资料 }
+  - { from: tradein, to: replacement, relation: 换新, basis: 行业公开资料 }
+  - { from: rental, to: replacement, relation: 租赁更新, basis: 行业公开资料 }
+  - { from: replacement, to: consumer, relation: 更新消费, basis: 行业公开资料 }

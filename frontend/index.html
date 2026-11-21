@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07080a" />
+    <meta name="description" content="经营证据链 — 每个数字都能回到年报那一页。AI 驱动的行业研究与企业经营分析助手。" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23c8102e'/%3E%3Cpath d='M9.5 16.4l4 4 9-9.4' stroke='%23fff' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+    <script>
+      // 在样式生效前恢复主题，避免浅色用户看到一帧深色页面。
+      try {
+        if (localStorage.getItem("ec-theme") === "light") {
+          document.documentElement.dataset.theme = "light";
+          document.documentElement.style.colorScheme = "light";
+        }
+      } catch (e) {}
+    </script>
+    <title>经营证据链 · AI 驱动的行业研究与企业经营分析</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

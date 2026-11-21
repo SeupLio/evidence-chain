@@ -1,0 +1,14 @@
+id: operating_watch_v1
+version: rules/v1.0.0
+# v1 演示配置，阈值可调；切换行业时先补齐采集口径再看规则
+margin_pressure:
+  delta_pp_le: -2.0
+  peer_gap_pp_le: -3.0
+  severity: 关注
+cash_divergence:
+  ocf_margin_delta_pp_le: -5.0
+  severity: 关注
+balance_sheet_watch:
+  delta_pp_ge: 5.0
+  ratio_ge: 0.65
+  severity: 需人工核对
